@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
-import { useRouter } from 'expo-router';
-import { COLORS, FONTS, SIZES, SHADOWS } from '@/constants/Colors';
 import { PracticeCard } from '@/components/PracticeCard';
+import { VocabQuestion } from '@/components/Vocab';
+import { COLORS, SHADOWS, SIZES } from '@/constants/Colors';
 import { practiceTests } from '@/constants/mockData';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 type PracticeCategory = 'full' | 'drill' | 'quiz';
 
@@ -59,7 +60,7 @@ export default function PracticeScreen() {
         {renderTabButton('Quick Quizzes', 'quiz')}
       </View>
 
-      <ScrollView 
+      {/* <ScrollView 
         style={styles.testsList} 
         contentContainerStyle={styles.testsListContent}
         showsVerticalScrollIndicator={false}
@@ -76,13 +77,62 @@ export default function PracticeScreen() {
               progress={test.progress}
               onPress={() => handleCardPress(test.id)}
             />
-          ))
-        ) : (
+          ))}
+        // ) : (
+        //   <View style={styles.emptyState}>
+        //     <Text style={styles.emptyStateText}>No tests available in this category yet.</Text>
+        //   </View>
+        // )}
+      </ScrollView> */}
+      <ScrollView
+        style={styles.testsList}
+        contentContainerStyle={styles.testsListContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {filteredTests.map(test => (
+          <PracticeCard 
+            key={test.id}
+            id={test.id}
+            title={test.title}
+            description={test.description}
+            timeEstimate={test.timeEstimate}
+            difficulty={test.difficulty as 'Easy' | 'Medium' | 'Hard'}
+            progress={test.progress}
+            onPress={() => handleCardPress(test.id)}
+          />
+        ))}
+        
+        {activeTab==='full' && (
+          <VocabQuestion
+            title="Full Length Vocabulary Practice Questions"
+            description="All words that appear on the SAT"
+            image={require('@/assets/images/favicon.png')}
+            onPress={() => router.push("/(tabs)/vocabpractice")}
+          />
+        )}
+
+        {activeTab==='full' && (
+          <VocabQuestion
+            title="Full Length Reading Practice Questions"
+            description="All Questions that appear on the SAT"
+            image={require('@/assets/images/favicon.png')}
+            onPress={() => router.push("/(tabs)/readingpractice")}
+          />
+        )}
+
+        {filteredTests.length === 0 && (
           <View style={styles.emptyState}>
-            <Text style={styles.emptyStateText}>No tests available in this category yet.</Text>
+            <Text style={styles.emptyStateText}>No Tests Available In This Category</Text>
           </View>
         )}
       </ScrollView>
+      {/* <ScrollView 
+        style={styles.testsList}
+        contentContainerStyle={styles.testsListContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <VocabQuestion />
+      </ScrollView> */}
     </SafeAreaView>
   );
 }

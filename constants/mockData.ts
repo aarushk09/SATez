@@ -19,6 +19,15 @@ export const practiceTests = [
     },
     {
       id: '3',
+      title: 'Full Vocab Practice',
+      description: 'Official College Board Vocab Test',
+      timeEstimate: '5 hours',
+      difficulty: 'Medium',
+      progress: 10,
+      type: 'full'
+    },
+    {
+      id: '4',
       title: 'Reading & Writing Section',
       description: 'Practice for the verbal section',
       timeEstimate: '65 minutes',
@@ -27,7 +36,7 @@ export const practiceTests = [
       type: 'section',
     },
     {
-      id: '4',
+      id: '5',
       title: 'Math No-Calculator Drill',
       description: 'Quick math practice without calculators',
       timeEstimate: '25 minutes',
@@ -36,7 +45,7 @@ export const practiceTests = [
       type: 'drill',
     },
     {
-      id: '5',
+      id: '6',
       title: 'Vocabulary Quiz',
       description: 'Test your knowledge of common SAT vocabulary',
       timeEstimate: '15 minutes',
@@ -45,7 +54,7 @@ export const practiceTests = [
       type: 'quiz',
     },
     {
-      id: '6',
+      id: '7',
       title: 'Grammar Quick Quiz',
       description: 'Practice essential grammar concepts',
       timeEstimate: '10 minutes',

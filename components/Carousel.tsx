@@ -1,14 +1,14 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { 
-  View, 
-  ScrollView, 
-  StyleSheet, 
-  Dimensions, 
-  NativeSyntheticEvent,
+import { COLORS } from '@/constants/Colors';
+import React, { useCallback, useRef, useState } from 'react';
+import {
+  Dimensions,
   NativeScrollEvent,
-  Platform
+  NativeSyntheticEvent,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  View
 } from 'react-native';
-import { COLORS, SIZES } from '@/constants/Colors';
 
 const { width } = Dimensions.get('window');
 
@@ -58,7 +58,7 @@ export const Carousel = ({
         const newIndex = (activeIndex + 1) % data.length;
         setActiveIndex(newIndex);
         scrollToIndex(newIndex);
-      }, autoPlayInterval) as NodeJS.Timeout;
+      }, autoPlayInterval) as unknown as NodeJS.Timeout;
 
       return () => {
         if (autoPlayTimeoutRef.current) {

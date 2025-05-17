@@ -1,6 +1,6 @@
-import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/constants/Colors';
+import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
 
 export default function TabLayout() {
   return (
@@ -40,6 +40,22 @@ export default function TabLayout() {
             <Ionicons name={focused ? "document-text" : "document-text-outline"} size={24} color={color} />
           ),
           headerShown: false,
+        }}
+      />
+      <Tabs.Screen 
+        name="vocabpractice"
+        options={{
+          title: "Vocabulary Practice",
+          headerShown: false,
+          tabBarItemStyle: {display: "none"}
+        }}
+      />
+      <Tabs.Screen 
+        name="readingpractice"
+        options={{
+          title: "Reading Practice",
+          headerShown: false,
+          tabBarItemStyle: {display: "none"}
         }}
       />
       <Tabs.Screen
